@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import { auth } from "./firebase-config.js";
 
 var pageMode = document.body.dataset.authMode;
@@ -37,6 +37,7 @@ if (form) {
                 await updateProfile(signUpResult.user, {
                     displayName: fullName + " (" + role + ")"
                 });
+                await signOut(auth);
 
                 showFeedback("success", "Account created successfully. Redirecting to login.");
                 window.setTimeout(function () {
