@@ -20,6 +20,10 @@
             color: #1f2937;
         }
 
+        [hidden] {
+            display: none !important;
+        }
+
         .container {
             max-width: 1200px;
             margin: auto;
@@ -50,6 +54,24 @@
             margin: 0 10px;
             text-decoration: none;
             color: #374151;
+        }
+
+        .user-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: #ecfdf3;
+            color: #166534;
+            font-weight: 700;
+        }
+
+        .logout-link {
+            background: #111827;
+            color: #fff !important;
+            border-radius: 999px;
+            cursor: pointer;
         }
 
         .hero {
@@ -350,8 +372,10 @@
         <a href="scanner.html">Scanner</a>
         <a href="tracking.html">Tracking</a>
         <a href="payment.html">Payments</a>
-        <a href="signup.html">Sign Up</a>
-        <a href="login.html">Login</a>
+        <a href="signup.html" data-guest-only>Sign Up</a>
+        <a href="login.html" data-guest-only>Login</a>
+        <span class="user-chip" data-user-only hidden><i class="fa-solid fa-user"></i> <span data-user-name>Member</span></span>
+        <a href="#" class="logout-link" data-user-only data-logout-button hidden>Logout</a>
     </nav>
 </header>
 
@@ -368,8 +392,10 @@
     <a href="scanner.html">Scanner</a>
     <a href="tracking.html">Tracking</a>
     <a href="payment.html">Payments</a>
-    <a href="signup.html">Sign Up</a>
-    <a href="login.html">Login</a>
+    <a href="signup.html" data-guest-only>Sign Up</a>
+    <a href="login.html" data-guest-only>Login</a>
+    <span class="user-chip" data-user-only hidden><i class="fa-solid fa-user"></i> <span data-user-name>Member</span></span>
+    <a href="#" class="logout-link" data-user-only data-logout-button hidden>Logout</a>
 </nav>
 
 <!-- HERO -->
@@ -377,9 +403,13 @@
     <div>
         <h1>Turn Your Waste Into Value</h1>
         <p>Connect with recyclers and earn from waste.</p>
-        <div class="hero-actions">
+        <div class="hero-actions" data-guest-only>
             <a class="hero-btn primary" href="signup.html">Create Account</a>
             <a class="hero-btn secondary" href="login.html">Login</a>
+        </div>
+        <div class="hero-actions" data-user-only hidden>
+            <a class="hero-btn primary" href="marketplace.html">Open Marketplace</a>
+            <a class="hero-btn secondary" href="tracking.html">Track Orders</a>
         </div>
     </div>
 
@@ -574,5 +604,6 @@
 </footer>
 
 <script src="js/mobile-nav.js"></script>
+<script type="module" src="js/session-ui.js"></script>
 </body>
 </html>

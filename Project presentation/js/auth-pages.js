@@ -1,9 +1,15 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 import { auth } from "./firebase-config.js";
 
 var pageMode = document.body.dataset.authMode;
 var form = document.getElementById("auth-form");
 var feedback = document.getElementById("auth-feedback");
+
+onAuthStateChanged(auth, function (user) {
+    if (user && (pageMode === "login" || pageMode === "signup")) {
+        window.location.href = "index.html";
+    }
+});
 
 function showFeedback(type, message) {
     feedback.className = "feedback visible " + type;
