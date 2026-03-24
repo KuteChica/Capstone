@@ -66,8 +66,10 @@
             <a href="scanner.html">Scanner</a>
             <a href="tracking.html">Tracking</a>
             <a href="payment.html">Payments</a>
-            <a href="signup.html">Sign Up</a>
-            <a href="login.html">Login</a>
+            <a href="signup.html" data-guest-only>Sign Up</a>
+            <a href="login.html" data-guest-only>Login</a>
+            <span class="user-chip" data-user-only hidden><i class="fa-solid fa-user"></i> <span data-user-name>Member</span></span>
+            <a href="#" class="logout-link" data-user-only data-logout-button hidden>Logout</a>
         </nav>
     </header>
     <div class="mobile-nav-backdrop" data-mobile-menu-backdrop></div>
@@ -83,8 +85,10 @@
         <a href="scanner.html">Scanner</a>
         <a href="tracking.html">Tracking</a>
         <a href="payment.html">Payments</a>
-        <a href="signup.html">Sign Up</a>
-        <a href="login.html">Login</a>
+        <a href="signup.html" data-guest-only>Sign Up</a>
+        <a href="login.html" data-guest-only>Login</a>
+        <span class="user-chip" data-user-only hidden><i class="fa-solid fa-user"></i> <span data-user-name>Member</span></span>
+        <a href="#" class="logout-link" data-user-only data-logout-button hidden>Logout</a>
     </nav>
     <main class="container">
         <section class="hero">
@@ -216,6 +220,7 @@
         </section>
     </main>
     <script src="js/mobile-nav.js"></script>
+    <script type="module" src="js/session-ui.js"></script>
     <script src="js/marketplace-flow.js"></script>
 </body>
 </html>

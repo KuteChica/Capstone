@@ -70,6 +70,9 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+        [hidden] {
+            display: none !important;
+        }
         /* Typography */
         h1, h2, h3, h4, h5, h6 {
             font-weight: 700;
@@ -292,6 +295,22 @@
         }
         .mobile-menu-btn:hover {
             background: var(--primary-700);
+        }
+        .user-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: var(--radius-full);
+            background: var(--primary-100);
+            color: var(--primary-700);
+            font-weight: 700;
+        }
+        .logout-link {
+            background: var(--neutral-900);
+            color: var(--white) !important;
+            border-radius: var(--radius-full);
+            cursor: pointer;
         }
         .mobile-nav-backdrop {
             position: fixed;
@@ -1364,6 +1383,10 @@
             color: var(--neutral-800);
             border-bottom: 1px solid var(--neutral-100);
         }
+        .mobile-nav .user-chip,
+        .mobile-nav .logout-link {
+            margin-top: 12px;
+        }
         .mobile-nav .btn {
             margin-top: 24px;
         }
@@ -1773,7 +1796,6 @@
             border-top: 1px solid var(--neutral-100);
         }
             
-
 
 
 
