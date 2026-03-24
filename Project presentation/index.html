@@ -42,6 +42,10 @@
             font-weight: bold;
         }
 
+        .mobile-menu-btn {
+            display: none;
+        }
+
         .nav-links a {
             margin: 0 10px;
             text-decoration: none;
@@ -261,19 +265,86 @@
             color: #fff;
             margin-top: 40px;
         }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 28px 20px;
+                gap: 24px;
+            }
+
+            .navbar {
+                padding: 14px 16px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 16px;
+            }
+
+            .features, .user-types, .marketplace-section {
+                padding: 34px 0;
+            }
+
+            .hero {
+                padding: 20px 16px 32px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-btn,
+            .products-header a,
+            .product-action {
+                width: 100%;
+            }
+
+            .user-type-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .user-type-card img {
+                width: 100%;
+                height: 220px;
+            }
+
+            .product-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-<header class="navbar">
-    <div class="logo">
+<header class="navbar site-navbar">
+    <div class="logo site-brand">
         <img src="logo.png" style="height:40px;">
         ClearMySpace
     </div>
 
-    <nav class="nav-links">
+    <button class="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-mobile-menu-toggle>
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="marketplace.html">Marketplace</a>
         <a href="scanner.html">Scanner</a>
@@ -283,6 +354,23 @@
         <a href="login.html">Login</a>
     </nav>
 </header>
+
+<div class="mobile-nav-backdrop" data-mobile-menu-backdrop></div>
+<nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" data-mobile-menu>
+    <div class="mobile-nav-header">
+        <span class="mobile-nav-title">Menu</span>
+        <button class="mobile-nav-close" type="button" aria-label="Close menu" data-mobile-menu-close>
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <a href="index.html">Home</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="scanner.html">Scanner</a>
+    <a href="tracking.html">Tracking</a>
+    <a href="payment.html">Payments</a>
+    <a href="signup.html">Sign Up</a>
+    <a href="login.html">Login</a>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
@@ -485,5 +573,6 @@
     &copy; 2026 ClearMySpace
 </footer>
 
+<script src="js/mobile-nav.js"></script>
 </body>
 </html>

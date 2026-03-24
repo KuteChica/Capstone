@@ -28,6 +28,10 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
 
+        .mobile-menu-btn {
+            display: none;
+        }
+
         .nav-links a {
             margin: 0 10px;
             text-decoration: none;
@@ -90,16 +94,57 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: inline-flex;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 14px 16px;
+                align-items: center;
+            }
+
+            .container {
+                padding: 28px 16px 40px;
+            }
+
+            .scanner-box {
+                padding: 24px 18px;
+            }
+
+            input,
+            button {
+                width: 100%;
+            }
+
+            .upload-popup {
+                left: 16px;
+                right: 16px;
+                top: auto;
+                bottom: 18px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-<header class="navbar">
-    <div><strong>ClearMySpace</strong></div>
+<header class="navbar site-navbar">
+    <div class="site-brand"><strong>ClearMySpace</strong></div>
 
-    <nav class="nav-links">
+    <button class="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-mobile-menu-toggle>
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="marketplace.html">Marketplace</a>
         <a href="scanner.html">Scanner</a>
@@ -109,6 +154,23 @@
         <a href="login.html">Login</a>
     </nav>
 </header>
+
+<div class="mobile-nav-backdrop" data-mobile-menu-backdrop></div>
+<nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" data-mobile-menu>
+    <div class="mobile-nav-header">
+        <span class="mobile-nav-title">Menu</span>
+        <button class="mobile-nav-close" type="button" aria-label="Close menu" data-mobile-menu-close>
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <a href="index.html">Home</a>
+    <a href="marketplace.html">Marketplace</a>
+    <a href="scanner.html">Scanner</a>
+    <a href="tracking.html">Tracking</a>
+    <a href="payment.html">Payments</a>
+    <a href="signup.html">Sign Up</a>
+    <a href="login.html">Login</a>
+</nav>
 
 <!-- SCANNER SECTION -->
 <div class="container">
@@ -164,6 +226,7 @@ function scanWaste() {
     result.innerText = "Result: " + random;
 }
 </script>
+<script src="js/mobile-nav.js"></script>
 
 </body>
 </html>
