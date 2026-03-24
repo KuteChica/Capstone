@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - ClearMySpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; margin: 0; background: linear-gradient(180deg, #f5faf7 0%, #ffffff 100%); color: #1f2937; }
+        .navbar { background: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+        .nav-links a { margin: 0 10px; text-decoration: none; color: #374151; }
+        .container { max-width: 1160px; margin: 0 auto; padding: 40px 20px 60px; }
+        .hero { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 24px; align-items: center; margin-bottom: 32px; }
+        .hero-copy h1 { margin-bottom: 12px; font-size: clamp(2rem, 4vw, 3rem); }
+        .hero-copy p { color: #4b5563; margin-bottom: 20px; max-width: 620px; }
+        .hero-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+        .hero-stat { background: white; border-radius: 16px; padding: 16px 18px; min-width: 150px; box-shadow: 0 10px 24px rgba(17, 24, 39, 0.06); }
+        .hero-stat strong { display: block; font-size: 1.3rem; color: #15803d; }
+        .market-summary { background: linear-gradient(135deg, #14532d, #22c55e); color: white; border-radius: 24px; padding: 28px; box-shadow: 0 18px 35px rgba(34, 197, 94, 0.22); }
+        .market-summary p { color: rgba(255,255,255,0.86); }
+        .section-head { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 22px; flex-wrap: wrap; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; }
+        .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 14px 30px rgba(17, 24, 39, 0.08); display: flex; flex-direction: column; }
+        .product-card img { width: 100%; height: 190px; object-fit: cover; }
+        .product-content { padding: 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+        .product-meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .product-price { font-size: 1.3rem; font-weight: 800; color: #14532d; }
+        .chip { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 8px 12px; background: #ecfdf3; color: #166534; font-size: 0.88rem; font-weight: 600; }
+        .product-notes { color: #4b5563; min-height: 48px; }
+        .actions { display: flex; gap: 10px; margin-top: auto; }
+        button, .ghost-link { border: none; padding: 12px 16px; border-radius: 10px; cursor: pointer; font-weight: 700; text-decoration: none; text-align: center; }
+        .buy-btn { background: #22c55e; color: white; flex: 1; }
+        .buy-btn:hover { background: #16a34a; }
+        .ghost-link { background: #f3f4f6; color: #111827; }
+        .status-banner { margin-top: 28px; background: #111827; color: white; border-radius: 18px; padding: 18px 20px; display: none; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .status-banner.visible { display: flex; }
+        @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div><strong>ClearMySpace</strong></div>
+        <nav class="nav-links">
+            <a href="Index.html">Home</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="scanner.html">Scanner</a>
+            <a href="tracking.html">Tracking</a>
+            <a href="payment.html">Payments</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="hero">
+            <div class="hero-copy">
+                <h1>Buy sorted recyclable materials and move them through checkout fast.</h1>
+                <p>Select a material, continue to payment, and then monitor progress from order placement to delivery on the tracking page.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat"><strong>8 lots</strong><span>Available today</span></div>
+                    <div class="hero-stat"><strong>24 hrs</strong><span>Average dispatch</span></div>
+                    <div class="hero-stat"><strong>Live</strong><span>Order tracking</span></div>
+                </div>
+            </div>
+            <aside class="market-summary">
+                <h2>Marketplace checkout</h2>
+                <p>Each product now supports purchase, payment confirmation, and tracking with a generated order ID saved in the browser.</p>
+                <p id="selected-product-summary">No product selected yet.</p>
+            </aside>
+        </section>
+        <section>
+            <div class="section-head">
+                <div>
+                    <h2>Available Materials</h2>
+                    <p>Choose a listing to start payment.</p>
+                </div>
+                <a class="ghost-link" href="tracking.html">View active orders</a>
+            </div>
+            <div class="products-grid">
+                <article class="product-card">
+                    <img src="product1.jpg" alt="Plastic waste bundles">
+                    <div class="product-content">
+                        <div class="product-meta"><h3>Plastic Waste</h3><span class="chip"><i class="fa-solid fa-recycle"></i> Clean sorted</span></div>
+                        <div class="product-price">NGN 2,000</div>
+                        <p class="product-notes">PET and household plastic sorted into sealed bags for recycling plants.</p>
+                        <div class="actions">
+                            <button class="buy-btn" data-product-name="Plastic Waste" data-product-price="2000" data-product-image="product1.jpg" data-product-category="Plastic" data-product-delivery="1-2 days">Buy Now</button>
+                            <a class="ghost-link" href="payment.html">Checkout</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="product2.jpg" alt="Metal scrap collection">
+                    <div class="product-content">
+                        <div class="product-meta"><h3>Metal Scrap</h3><span class="chip"><i class="fa-solid fa-industry"></i> Bulk lot</span></div>
+                        <div class="product-price">NGN 5,000</div>
+                        <p class="product-notes">Compressed scrap metal suitable for fabrication recovery and industrial recycling.</p>
+                        <div class="actions">
+                            <button class="buy-btn" data-product-name="Metal Scrap" data-product-price="5000" data-product-image="product2.jpg" data-product-category="Metal" data-product-delivery="2-3 days">Buy Now</button>
+                            <a class="ghost-link" href="payment.html">Checkout</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="https://i.pinimg.com/1200x/ce/87/f2/ce87f286048b11302aaf8e2828465480.jpg" alt="Paper waste bales">
+                    <div class="product-content">
+                        <div class="product-meta"><h3>Paper Waste</h3><span class="chip"><i class="fa-solid fa-box"></i> Compact bale</span></div>
+                        <div class="product-price">NGN 1,500</div>
+                        <p class="product-notes">Dry paper bundles recovered from offices and retail collection points.</p>
+                        <div class="actions">
+                            <button class="buy-btn" data-product-name="Paper Waste" data-product-price="1500" data-product-image="https://i.pinimg.com/1200x/ce/87/f2/ce87f286048b11302aaf8e2828465480.jpg" data-product-category="Paper" data-product-delivery="Same day">Buy Now</button>
+                            <a class="ghost-link" href="payment.html">Checkout</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="product4.jpg" alt="Electronics waste">
+                    <div class="product-content">
+                        <div class="product-meta"><h3>Electronics</h3><span class="chip"><i class="fa-solid fa-microchip"></i> E-waste</span></div>
+                        <div class="product-price">NGN 10,000</div>
+                        <p class="product-notes">Used electronics components prepared for responsible dismantling and material recovery.</p>
+                        <div class="actions">
+                            <button class="buy-btn" data-product-name="Electronics" data-product-price="10000" data-product-image="product4.jpg" data-product-category="E-waste" data-product-delivery="3-4 days">Buy Now</button>
+                            <a class="ghost-link" href="payment.html">Checkout</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="https://i.pinimg.com/736x/6d/3c/78/6d3c784524a2a57821cfcf900b1d980e.jpg" alt="HDPE plastic containers">
+                    <div class="product-content">
+                        <div class="product-meta"><h3>HDPE Containers</h3><span class="chip"><i class="fa-solid fa-jug-detergent"></i> Washed flakes</span></div>
+                        <div class="product-price">NGN 3,200</div>
+                        <p class="product-notes">Cleaned detergent and utility containers prepared for plastic recovery and pellet production.</p>
+                        <div class="actions">
+                            <button class="buy-btn" data-product-name="HDPE Containers" data-product-price="3200" data-product-image="https://i.pinimg.com/736x/6d/3c/78/6d3c784524a2a57821cfcf900b1d980e.jpg" data-product-category="Plastic" data-product-delivery="1-2 days">Buy Now</button>
+                            <a class="ghost-link" href="payment.html">Checkout</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="https://i.pinimg.com/736x/4e/f7/b2/4ef7b232cea262e0849fa9155d8e9b89.jpg" alt="Aluminium scrap bundles">
+                    <div class="product-content">
+                        <div class="product-meta"><h3>Aluminium Scrap</h3><span class="chip"><i class="fa-solid fa-hammer"></i> High grade</span></div>
+                        <div class="product-price">NGN 6,800</div>
+                        <p class="product-notes">Separated aluminium pieces ideal for smelting, repurposing, and lightweight manufacturing use.</p>
+                        <div class="actions">
+                            <button class="buy-btn" data-product-name="Aluminium Scrap" data-product-price="6800" data-product-image="https://i.pinimg.com/736x/4e/f7/b2/4ef7b232cea262e0849fa9155d8e9b89.jpg" data-product-category="Metal" data-product-delivery="2-3 days">Buy Now</button>
+                            <a class="ghost-link" href="payment.html">Checkout</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="https://i.pinimg.com/1200x/ce/87/f2/ce87f286048b11302aaf8e2828465480.jpg" alt="Cardboard bales">
+                    <div class="product-content">
+                        <div class="product-meta"><h3>Cardboard Bales</h3><span class="chip"><i class="fa-solid fa-box-open"></i> Bulk packed</span></div>
+                        <div class="product-price">NGN 2,400</div>
+                        <p class="product-notes">Flattened corrugated cardboard bundled for packaging reuse and recycled fiber processing.</p>
+                        <div class="actions">
+                            <button class="buy-btn" data-product-name="Cardboard Bales" data-product-price="2400" data-product-image="https://i.pinimg.com/1200x/ce/87/f2/ce87f286048b11302aaf8e2828465480.jpg" data-product-category="Paper" data-product-delivery="Same day">Buy Now</button>
+                            <a class="ghost-link" href="payment.html">Checkout</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="product-card">
+                    <img src="https://i.pinimg.com/736x/59/c1/55/59c155fcf7007e86dd2ae4adb7ca1919.jpg" alt="Computer parts and cables">
+                    <div class="product-content">
+                        <div class="product-meta"><h3>Computer Parts Mix</h3><span class="chip"><i class="fa-solid fa-laptop-code"></i> Salvage lot</span></div>
+                        <div class="product-price">NGN 12,500</div>
+                        <p class="product-notes">Mixed boards, cables, and casings grouped for component extraction and e-waste recycling.</p>
+                        <div class="actions">
+                            <button class="buy-btn" data-product-name="Computer Parts Mix" data-product-price="12500" data-product-image="https://i.pinimg.com/736x/59/c1/55/59c155fcf7007e86dd2ae4adb7ca1919.jpg" data-product-category="E-waste" data-product-delivery="3-4 days">Buy Now</button>
+                            <a class="ghost-link" href="payment.html">Checkout</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="status-banner" id="marketplace-status-banner">
+                <span id="marketplace-status-text"></span>
+                <a class="ghost-link" href="payment.html">Go to payment</a>
+            </div>
+        </section>
+    </main>
+    <script src="js/marketplace-flow.js"></script>
+</body>
+</html>

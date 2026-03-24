@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking - ClearMySpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #f8fafc; color: #111827; }
+        .navbar { background: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-links a { margin: 0 10px; text-decoration: none; color: #374151; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 40px 20px 60px; }
+        .top-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 24px; margin-bottom: 26px; }
+        .card { background: white; border-radius: 22px; padding: 26px; box-shadow: 0 16px 32px rgba(15, 23, 42, 0.07); }
+        .search-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+        .search-row input { flex: 1; min-width: 240px; padding: 13px 14px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit; }
+        .search-row button, .link-btn { border: none; border-radius: 10px; padding: 13px 16px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+        .search-row button { background: #22c55e; color: white; }
+        .link-btn { background: #111827; color: white; }
+        .tracking-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .order-card { background: white; border-radius: 20px; padding: 22px; box-shadow: 0 14px 26px rgba(15, 23, 42, 0.06); }
+        .order-header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 16px; }
+        .status-pill { display: inline-flex; padding: 8px 12px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; background: #ecfdf3; color: #166534; }
+        .order-meta { display: grid; gap: 10px; margin-bottom: 18px; }
+        .order-meta div { display: flex; justify-content: space-between; gap: 14px; }
+        .progress { display: grid; gap: 12px; }
+        .progress-step { display: flex; gap: 12px; align-items: flex-start; }
+        .progress-dot { width: 14px; height: 14px; border-radius: 50%; margin-top: 4px; background: #d1d5db; flex-shrink: 0; }
+        .progress-step.done .progress-dot { background: #22c55e; box-shadow: 0 0 0 4px #dcfce7; }
+        .empty-orders { text-align: center; padding: 32px; background: white; border-radius: 22px; border: 1px dashed #cbd5e1; }
+        .insight-list { display: grid; gap: 14px; margin-top: 18px; }
+        .insight-item { display: flex; justify-content: space-between; gap: 12px; padding: 14px 16px; background: #f8fafc; border-radius: 14px; }
+        @media (max-width: 900px) { .top-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div><strong>ClearMySpace</strong></div>
+        <nav class="nav-links">
+            <a href="Index.html">Home</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="scanner.html">Scanner</a>
+            <a href="tracking.html">Tracking</a>
+            <a href="payment.html">Payments</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+    <main class="container">
+        <h1><i class="fa-solid fa-truck-fast"></i> Order Tracking</h1>
+        <p>Track the waste purchase after payment using the generated order ID or review all local orders below.</p>
+        <section class="top-grid">
+            <div class="card">
+                <h2>Find an order</h2>
+                <p>Search by order ID to jump straight to a purchase.</p>
+                <div class="search-row">
+                    <input id="tracking-search-input" type="text" placeholder="Enter order ID e.g. CMS-123456">
+                    <button id="tracking-search-btn" type="button">Track Order</button>
+                </div>
+                <div class="search-row">
+                    <a class="link-btn" href="marketplace.html">Buy another item</a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Tracking overview</h2>
+                <p>Orders are stored in the browser after payment and updated with dispatch milestones.</p>
+                <div class="insight-list" id="tracking-insights"></div>
+            </div>
+        </section>
+        <section id="tracking-results" class="tracking-grid"></section>
+    </main>
+    <script src="js/marketplace-flow.js"></script>
+</body>
+</html>

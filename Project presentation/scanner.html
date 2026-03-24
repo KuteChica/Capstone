@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Scanner - ClearMySpace</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: #f9fafb;
+            text-align: center;
+        }
+
+        .navbar {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .nav-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #374151;
+        }
+
+        .container {
+            padding: 50px 20px;
+        }
+
+        .scanner-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        input {
+            margin: 20px 0;
+        }
+
+        button {
+            background: #22c55e;
+            border: none;
+            padding: 12px 20px;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .upload-popup {
+            position: fixed;
+            top: 90px;
+            right: 24px;
+            background: #166534;
+            color: white;
+            padding: 14px 18px;
+            border-radius: 10px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 9999;
+        }
+
+        .upload-popup.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div><strong>ClearMySpace</strong></div>
+
+    <nav class="nav-links">
+        <a href="Index.html">Home</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="scanner.html">Scanner</a>
+        <a href="tracking.html">Tracking</a>
+        <a href="payment.html">Payments</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<!-- SCANNER SECTION -->
+<div class="container">
+    <h1><i class="fa-solid fa-camera"></i> AI Waste Scanner</h1>
+
+    <div class="scanner-box">
+
+        <p>Upload an image to identify waste type</p>
+
+        <input type="file" id="imageInput">
+
+        <br>
+
+        <button onclick="scanWaste()">Scan Waste</button>
+
+        <div class="result" id="result"></div>
+
+    </div>
+</div>
+
+<div class="upload-popup" id="uploadPopup">Successfully uploaded.</div>
+
+<!-- SIMPLE SCRIPT -->
+<script>
+const uploadPopup = document.getElementById("uploadPopup");
+
+function scanWaste() {
+    const imageInput = document.getElementById("imageInput");
+    const result = document.getElementById("result");
+
+    if (!imageInput.files.length) {
+        result.innerText = "Please upload an image first.";
+        return;
+    }
+
+    uploadPopup.innerText = "Successfully uploaded.";
+    uploadPopup.classList.add("show");
+
+    window.clearTimeout(uploadPopup.hideTimer);
+    uploadPopup.hideTimer = window.setTimeout(function () {
+        uploadPopup.classList.remove("show");
+    }, 2200);
+
+    // Fake AI response (for now)
+    const responses = [
+        "Plastic - Recyclable",
+        "Metal - High Value",
+        "Organic Waste",
+        "Paper - Recyclable"
+    ];
+
+    const random = responses[Math.floor(Math.random() * responses.length)];
+    result.innerText = "Result: " + random;
+}
+</script>
+
+</body>
+</html>

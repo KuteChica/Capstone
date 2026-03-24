@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments - ClearMySpace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #f7faf8; color: #111827; }
+        .navbar { background: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-links a { margin: 0 10px; text-decoration: none; color: #374151; }
+        .container { max-width: 1120px; margin: 0 auto; padding: 40px 20px 60px; }
+        .payment-layout { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; }
+        .panel { background: white; border-radius: 22px; padding: 28px; box-shadow: 0 18px 35px rgba(17, 24, 39, 0.07); }
+        .summary-card img { width: 100%; height: 240px; border-radius: 18px; object-fit: cover; margin-bottom: 18px; }
+        .summary-meta { display: grid; gap: 12px; margin-top: 18px; }
+        .summary-row { display: flex; justify-content: space-between; gap: 14px; padding-bottom: 10px; border-bottom: 1px solid #e5e7eb; }
+        .summary-row.total { font-weight: 800; color: #14532d; border-bottom: none; }
+        form { display: grid; gap: 16px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        label { font-weight: 600; font-size: 0.95rem; }
+        input, select, textarea { width: 100%; margin-top: 8px; padding: 13px 14px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit; box-sizing: border-box; }
+        textarea { min-height: 92px; resize: vertical; }
+        .btn { width: 100%; padding: 15px; background: #22c55e; border: none; color: white; border-radius: 12px; cursor: pointer; font-weight: 800; font-size: 1rem; }
+        .btn:hover { background: #16a34a; }
+        .empty-state { text-align: center; padding: 24px; border: 1px dashed #cbd5e1; border-radius: 18px; background: #f8fafc; }
+        .feedback { display: none; margin-top: 16px; padding: 14px 16px; border-radius: 12px; font-weight: 600; }
+        .feedback.visible { display: block; }
+        .feedback.success { background: #ecfdf3; color: #166534; }
+        .feedback.error { background: #fef2f2; color: #b91c1c; }
+        .secure-note { display: flex; align-items: center; gap: 10px; background: #eff6ff; color: #1d4ed8; padding: 12px 14px; border-radius: 12px; margin-bottom: 20px; }
+        @media (max-width: 900px) { .payment-layout { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div><strong>ClearMySpace</strong></div>
+        <nav class="nav-links">
+            <a href="Index.html">Home</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="scanner.html">Scanner</a>
+            <a href="tracking.html">Tracking</a>
+            <a href="payment.html">Payments</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+    <main class="container">
+        <h1><i class="fa-solid fa-credit-card"></i> Complete Purchase</h1>
+        <p>Confirm the selected listing, enter buyer details, and create a tracked order.</p>
+        <div class="payment-layout">
+            <section class="panel summary-card">
+                <div id="selected-product-panel">
+                    <div class="empty-state">
+                        <h2>No product selected</h2>
+                        <p>Choose an item from the marketplace first so payment can be prepared.</p>
+                        <p><a href="marketplace.html">Return to marketplace</a></p>
+                    </div>
+                </div>
+            </section>
+            <section class="panel">
+                <div class="secure-note">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Demo checkout only. Payment is simulated and stored locally in this browser.</span>
+                </div>
+                <form id="payment-form">
+                    <div class="form-row">
+                        <label>Full Name<input id="customer-name" type="text" placeholder="Enter your full name" required></label>
+                        <label>Email Address<input id="customer-email" type="email" placeholder="name@example.com" required></label>
+                    </div>
+                    <div class="form-row">
+                        <label>Phone Number<input id="customer-phone" type="tel" placeholder="+234 800 000 0000" required></label>
+                        <label>Payment Method<select id="payment-method" required><option value="">Select method</option><option value="Card">Card</option><option value="Bank Transfer">Bank Transfer</option><option value="Mobile Money">Mobile Money</option></select></label>
+                    </div>
+                    <div class="form-row">
+                        <label>Quantity<input id="order-quantity" type="number" min="1" value="1" required></label>
+                        <label>Delivery Option<select id="delivery-option" required><option value="Standard Delivery">Standard Delivery</option><option value="Express Delivery">Express Delivery</option><option value="Warehouse Pickup">Warehouse Pickup</option></select></label>
+                    </div>
+                    <label>Delivery Address<textarea id="delivery-address" placeholder="Enter delivery address" required></textarea></label>
+                    <button class="btn" type="submit">Make Payment</button>
+                </form>
+                <div class="feedback" id="payment-feedback"></div>
+            </section>
+        </div>
+    </main>
+    <script src="js/marketplace-flow.js"></script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearMySpace</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (FIXED ICONS) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Styles.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: #f9fafb;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .navbar {
+            background: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #374151;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 40px;
+            align-items: center;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .hero-btn.primary {
+            background: #22c55e;
+            color: white;
+        }
+
+        .hero-btn.secondary {
+            background: #111827;
+            color: white;
+        }
+
+        .hero img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .features, .user-types, .marketplace-section {
+            padding: 50px 20px;
+        }
+
+        .features-grid, .products-grid, .user-types-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .features-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: block;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            color: #22c55e;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #4b5563;
+            font-size: 0.95rem;
+            min-height: 48px;
+            margin-bottom: 14px;
+        }
+
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: #ecfdf3;
+            color: #166534;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .user-types-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .user-type-card {
+            display: flex;
+            gap: 15px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .user-type-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .products-grid {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .products-header p {
+            color: #4b5563;
+            max-width: 620px;
+        }
+
+        .products-header a {
+            text-decoration: none;
+            background: #111827;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .product-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 18px;
+            overflow: hidden;
+            text-align: left;
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 34px rgba(15, 23, 42, 0.13);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 18px;
+        }
+
+        .product-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .product-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #ecfdf3;
+            color: #166534;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .product-price {
+            color: #166534;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .product-card p {
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+
+        .product-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: #22c55e;
+            color: white;
+            padding: 11px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        footer {
+            text-align: center;
+            padding: 36px 20px;
+            background: #111827;
+            color: #fff;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo">
+        <img src="logo.png" style="height:40px;">
+        ClearMySpace
+    </div>
+
+    <nav class="nav-links">
+        <a href="Index.html">Home</a>
+        <a href="marketplace.html">Marketplace</a>
+        <a href="scanner.html">Scanner</a>
+        <a href="tracking.html">Tracking</a>
+        <a href="payment.html">Payments</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="login.html">Login</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div>
+        <h1>Turn Your Waste Into Value</h1>
+        <p>Connect with recyclers and earn from waste.</p>
+        <div class="hero-actions">
+            <a class="hero-btn primary" href="signup.html">Create Account</a>
+            <a class="hero-btn secondary" href="login.html">Login</a>
+        </div>
+    </div>
+
+    <div>
+        <img src="hero.jpg">
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+    <div class="container">
+        <div class="features-grid">
+
+            <a class="feature-card" href="scanner.html">
+                <div class="feature-icon"><i class="fa-solid fa-camera"></i></div>
+                <h4>AI Scanner</h4>
+                <p>Upload a waste image and let the platform identify the material before disposal or resale.</p>
+                <span class="feature-link">Open Scanner</span>
+            </a>
+
+            <a class="feature-card" href="marketplace.html">
+                <div class="feature-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <h4>Marketplace</h4>
+                <p>Buy and sell recyclable materials like plastic, metal, paper, and electronics.</p>
+                <span class="feature-link">Browse Listings</span>
+            </a>
+
+            <a class="feature-card" href="signup.html">
+                <div class="feature-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                <h4>Scheduling</h4>
+                <p>Create an account to schedule pickups, manage recycling activity, and organize waste collection.</p>
+                <span class="feature-link">Create Account</span>
+            </a>
+
+            <a class="feature-card" href="payment.html">
+                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h4>Payments</h4>
+                <p>Complete secure checkout for recyclable material purchases and keep payment records together.</p>
+                <span class="feature-link">Go to Payments</span>
+            </a>
+
+            <a class="feature-card" href="tracking.html">
+                <div class="feature-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <h4>Location</h4>
+                <p>Use order tracking to follow delivery routes, pickup progress, and where materials are headed.</p>
+                <span class="feature-link">View Locations</span>
+            </a>
+
+            <a class="feature-card" href="tracking.html">
+                <div class="feature-icon"><i class="fa-solid fa-chart-column"></i></div>
+                <h4>Tracking</h4>
+                <p>Monitor order status from payment confirmation through processing, dispatch, and delivery.</p>
+                <span class="feature-link">Track Orders</span>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- USERS -->
+<section class="user-types">
+    <div class="container">
+
+        <div class="user-types-grid">
+
+            <div class="user-type-card">
+                <img src="user1.jpg">
+                <div>
+                    <h4>Households</h4>
+                    <p>Manage waste easily</p>
+                </div>
+            </div>
+
+            <div class="user-type-card">
+                <img src="user2.jpg">
+                <div>
+                    <h4>Businesses</h4>
+                    <p>Handle bulk waste</p>
+                </div>
+            </div>
+
+            <div class="user-type-card">
+                <img src="user3.jpg">
+                <div>
+                    <h4>Collectors</h4>
+                    <p>Find jobs</p>
+                </div>
+            </div>
+
+            <div class="user-type-card">
+                <img src="user4.jpg">
+                <div>
+                    <h4>Recyclers</h4>
+                    <p>Access materials</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- MARKETPLACE -->
+<section class="marketplace-section">
+    <div class="container">
+        <div class="products-header">
+            <div>
+                <h2>Featured Materials</h2>
+                <p>Explore sorted recyclable materials ready for resale, reuse, and responsible recovery through the ClearMySpace marketplace.</p>
+            </div>
+            <a href="marketplace.html">View Full Marketplace</a>
+        </div>
+
+        <div class="products-grid">
+
+            <div class="product-card">
+                <img src="product1.jpg">
+                <div class="product-content">
+                    <div class="product-top">
+                        <span class="product-tag">Plastic</span>
+                        <span class="product-price">NGN 2,000</span>
+                    </div>
+                    <h3>Plastic Waste Bundle</h3>
+                    <p>Clean PET and mixed household plastics arranged for direct recycling and resale.</p>
+                    <a class="product-action" href="marketplace.html">Buy Material</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="product2.jpg">
+                <div class="product-content">
+                    <div class="product-top">
+                        <span class="product-tag">Metal</span>
+                        <span class="product-price">NGN 5,000</span>
+                    </div>
+                    <h3>Processed Metal Scrap</h3>
+                    <p>Recovered metal pieces collected for fabrication reuse and industrial recycling value.</p>
+                    <a class="product-action" href="marketplace.html">Buy Material</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://i.pinimg.com/1200x/ce/87/f2/ce87f286048b11302aaf8e2828465480.jpg">
+                <div class="product-content">
+                    <div class="product-top">
+                        <span class="product-tag">Paper</span>
+                        <span class="product-price">NGN 1,500</span>
+                    </div>
+                    <h3>Paper Recovery Pack</h3>
+                    <p>Sorted paper waste prepared for packaging plants and secondary paper processing.</p>
+                    <a class="product-action" href="marketplace.html">Buy Material</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="product4.jpg">
+                <div class="product-content">
+                    <div class="product-top">
+                        <span class="product-tag">E-waste</span>
+                        <span class="product-price">NGN 10,000</span>
+                    </div>
+                    <h3>Electronics Recovery Lot</h3>
+                    <p>Discarded electronics grouped for safe dismantling and component recovery workflows.</p>
+                    <a class="product-action" href="marketplace.html">Buy Material</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- TRACKING -->
+<section class="marketplace-section">
+    <div class="container">
+
+        <div class="products-grid">
+
+            <div class="product-card"><img src="track1.jpg"></div>
+            <div class="product-card"><img src="track2.jpg"></div>
+            <div class="product-card"><img src="track3.jpg"></div>
+            <div class="product-card"><img src="track4.jpg"></div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    © 2026 ClearMySpace
+</footer>
+
+</body>
+</html>
