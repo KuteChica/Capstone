@@ -28,8 +28,17 @@
     });
 
     menu.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
+        link.addEventListener('click', function (event) {
+            var href = link.getAttribute('href');
+
             setMenuState(false);
+
+            if (!href || href === '#') {
+                return;
+            }
+
+            event.preventDefault();
+            window.location.href = href;
         });
     });
 
