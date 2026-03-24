@@ -319,7 +319,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity var(--transition-base);
-            z-index: 1190;
+            z-index: 1290;
         }
         .mobile-nav-backdrop.active {
             opacity: 1;
@@ -1346,10 +1346,11 @@
             right: 0;
             bottom: 0;
             background: var(--white);
-            z-index: 1195;
+            z-index: 1300;
             padding: 100px 24px 40px;
             flex-direction: column;
             overflow-y: auto;
+            pointer-events: auto;
         }
         .mobile-nav.active {
             display: flex;
@@ -1796,7 +1797,6 @@
             border-top: 1px solid var(--neutral-100);
         }
             
-
 
 
 
