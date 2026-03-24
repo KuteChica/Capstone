@@ -42,7 +42,7 @@ if (form) {
             await signInWithEmailAndPassword(auth, email, password);
             showFeedback("success", "Login successful. Redirecting to the home page.");
             window.setTimeout(function () {
-                window.location.href = "Index.html";
+                window.location.href = "index.html";
             }, 1200);
         } catch (error) {
             showFeedback("error", error.message.replace("Firebase:", "").trim());
